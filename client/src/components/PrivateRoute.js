@@ -1,6 +1,5 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router';
-import Friends from './Friends'
 
 
 const PrivateRoute = ({ component: Component, ...rest }) => {

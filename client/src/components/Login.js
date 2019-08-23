@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import axios from 'axios'
 
-const Login = ({submitData}) => {
+const Login = (props) => {
   // make a post request to retrieve a token from the api
   const [grabData, setGrabData] = useState({ username: 'Lambda School', password: 'i<3Lambd4'});
   const handleChange = event => setGrabData({...grabData, [event.target.name]: event.target.value})
@@ -11,7 +11,12 @@ const Login = ({submitData}) => {
       // submitData(grabData);
       axios
       .post('http://localhost:5000/api/login', grabData)
-      .then(res => console.log(res))
+      .then(res => {
+        console.log(res)
+        console.log(props.history)
+        localStorage.setItem('token', res.data.payload);
+        props.history.push('/colors')
+      })
 
   }
 
